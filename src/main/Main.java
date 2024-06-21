@@ -9,9 +9,44 @@ public class Main  {
     public static void main(String[] args) {
 
 
-        InterfaceUsuario interfaceusuario  = new InterfaceUsuario();
+        InterfaceUsuario interfaceusuario = new InterfaceUsuario();
+        List<Financiamento> financiamentos = new ArrayList<Financiamento>();
+        /*double valorImovel = interfaceusuario.pedirValorImovel();
+        int prazofinanciamento = interfaceusuario.pedirPrazoFinanciamento();
+        double taxaJuros = interfaceusuario.pedirTaxadejuros();
+        double tamanhoArea = interfaceusuario.pedirTamanhoArea();
+        double tamanhoTerreno = interfaceusuario.pedirTamanhoTerreno();
+        financiamentos.add(new Casa(valorImovel, prazofinanciamento, taxaJuros, tamanhoArea, tamanhoTerreno));
 
+         */
+        /*double valorImovel = interfaceusuario.pedirValorImovel();
+        int prazofinanciamento = interfaceusuario.pedirPrazoFinanciamento();
+        double taxaJuros = interfaceusuario.pedirTaxadejuros();
+        int numeroVagas = interfaceusuario.pedirNumeroDeVagasGaragem();
+        int andar = interfaceusuario.pedirAndar();
+        financiamentos.add(new Apartamento(valorImovel, prazofinanciamento, taxaJuros, numeroVagas, andar));
+
+         */
         double valorImovel = interfaceusuario.pedirValorImovel();
+        int prazofinanciamento = interfaceusuario.pedirPrazoFinanciamento();
+        double taxaJuros = interfaceusuario.pedirTaxadejuros();
+        int tipoZona = interfaceusuario.pedirTipoDeZona();
+        financiamentos.add(new Terreno(valorImovel, prazofinanciamento, taxaJuros, tipoZona));
+
+
+
+        double totalImoveis = 0;
+        double totalFinanciamentos = 0;
+
+        for(Financiamento financiamento: financiamentos){
+            financiamento.mostrarDadosFinanciamento();
+            totalImoveis += financiamento.getValorImovel();
+            totalFinanciamentos += financiamento.calcular_total_pagamento();
+        }
+    }
+}
+
+        /* double valorImovel = interfaceusuario.pedirValorImovel();
         int prazoFinanciamento = interfaceusuario.pedirPrazoFinanciamento();
         double TaxaJuros = interfaceusuario.pedirTaxadejuros();
 
@@ -44,7 +79,7 @@ public class Main  {
     }
 }
 
-       /* InterfaceUsuario interfaceUsuario = new InterfaceUsuario();
+       InterfaceUsuario interfaceUsuario = new InterfaceUsuario();
         double  taxaJuros = interfaceUsuario.pedirTaxadejuros();
         int prazoFinanciamentoanual = interfaceUsuario.pedirPrazoFinanciamento();
         double valorImovel = interfaceUsuario.pedirValorImovel();

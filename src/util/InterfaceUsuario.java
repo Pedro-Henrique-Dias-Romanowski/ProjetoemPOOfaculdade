@@ -56,4 +56,71 @@ public class InterfaceUsuario {
 
     }
 
+    public double pedirTamanhoArea(){
+         double tamanhoArea;
+         do{
+             System.out.println("Qual é o tamanho da área construída(Em metros qudrados)");
+             tamanhoArea = scanner.nextDouble();
+             if(tamanhoArea > 500000){
+                 System.out.println("Tamanho da área muito grande, tente novamente");
+             } else if(tamanhoArea < 100){
+                 System.out.println("O tamanho da área deve ser maior, tente novamente");
+             }
+         } while(tamanhoArea > 500000 || tamanhoArea < 100 );
+           return  tamanhoArea;
+    }
+    public double pedirTamanhoTerreno(){
+         double tamanhoTerreno;
+         do{
+             System.out.println("Qual será o tamanho do terreno?(Em metros quadrados)");
+             tamanhoTerreno = scanner.nextDouble();
+             if(tamanhoTerreno > 1000000){
+                 System.out.println("Tamanho do terreno muito grande, tente novamente");
+             } else if(tamanhoTerreno < 100){
+                 System.out.println("O tamanho do terreno deve ser maior, tente novamente");
+             }
+         } while(tamanhoTerreno > 1000000 || tamanhoTerreno < 100);
+         return tamanhoTerreno;
+    }
+
+    public int pedirNumeroDeVagasGaragem(){
+         int numeroDeVagas;
+         do{
+             System.out.println("Serão quantas vagas na garagem?");
+             numeroDeVagas = scanner.nextInt();
+             if(numeroDeVagas > 5){
+                 System.out.println("O número de vagas deve ser menor do que 5, tente novamente");
+             } else if (numeroDeVagas < 0){
+                 System.out.println("O número de vagas não pode ser negativo e nem maior doque cinco, tente novamente");
+             }
+         } while(numeroDeVagas > 5 || numeroDeVagas < 0);
+         return numeroDeVagas;
+    }
+
+    public int  pedirAndar(){
+         int andar;
+         do{
+             System.out.println("Qual é o andar do apartamento");
+             andar = scanner.nextInt();
+             if(andar > 25){
+                 System.out.println("O andar deve ser menor do que 25, tente novamente");
+             } else if(andar < 0){
+                 System.out.println("O andar não pode ser negativo, tente novamente");
+             }
+         } while(andar > 25 || andar < 0);
+         return  andar;
+    }
+
+    public int pedirTipoDeZona(){
+         int  tipodeZona;
+         do{
+             System.out.println("Qual será o tipo do terreno? (1[Residencial]/2[Comercial])");
+             tipodeZona = scanner.nextInt();
+             if(tipodeZona < 1 || tipodeZona > 2){
+                 System.out.println("O tipo de zona deve ser Residencial[1] ou comercial[2], tente novamente");
+             }
+         } while (tipodeZona < 1 || tipodeZona > 2);
+         return tipodeZona;
+    }
+
 }
