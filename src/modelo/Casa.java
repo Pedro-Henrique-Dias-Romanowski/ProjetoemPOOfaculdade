@@ -19,26 +19,20 @@ public class Casa extends Financiamento{
 
         if(valorAcrescimo > valorJuros){
                acrescimo = valorAcrescimo = valorJuros;
-            throw new DescontoMaiorDoQueJurosException("O valor do acréscimo não pode ser maior do que o valor do juros");
+            throw new DescontoMaiorDoQueJurosException(" O valor do acréscimo não pode ser maior do que o valor do juros");
         }
-         taxaJurosAnual = valorJuros;
+
          return this.acrescimo = valorAcrescimo;
 
     }
 
     @Override
     public  double calular_pagamento_mensal() {
-        // obter o valor dos juros
-         taxaJurosAnual = calular_pagamento_mensal() * (getTaxaJurosAnual() / 12);
-        // obter o valor dos acréscimos
-        double valorDoAcrescimo = acrescimo;
         try{
-            valorMaiorQueMensalidade(100, 80);
-        }  catch (DescontoMaiorDoQueJurosException e){
-            double valorParaIgualar = valorDoAcrescimo = taxaJurosAnual;
+            valorMaiorQueMensalidade(taxaJurosAnual, 80);
+        } catch (DescontoMaiorDoQueJurosException e){
             System.out.println(e.getMessage());
         }
-
         return  (this.valorImovel / (this.prazoFinanciamento * 12)) * (1 + (this.taxaJurosAnual / 12)) + this.acrescimo;
 
     }
@@ -51,7 +45,9 @@ public class Casa extends Financiamento{
     @Override
     public void mostrarDadosFinanciamento() {
         System.out.printf("O valor total vai ser de: R$%.2f" , this.calcular_total_pagamento());
+        System.out.println();
         System.out.printf("O valor do imóvel  vai ser de: R$%.2f" , this.getValorImovel());
+        System.out.println();
     }
 
     public double getTamanhoArea() {

@@ -30,8 +30,9 @@ public class Main  {
         double valorImovel = interfaceusuario.pedirValorImovel();
         int prazofinanciamento = interfaceusuario.pedirPrazoFinanciamento();
         double taxaJuros = interfaceusuario.pedirTaxadejuros();
-        int tipoZona = interfaceusuario.pedirTipoDeZona();
-        financiamentos.add(new Terreno(valorImovel, prazofinanciamento, taxaJuros, tipoZona));
+        double tamanhoArea = interfaceusuario.pedirTamanhoArea();
+        double tamanhoTerreno = interfaceusuario.pedirTamanhoTerreno();
+        financiamentos.add(new Casa(valorImovel, prazofinanciamento, taxaJuros, tamanhoArea, tamanhoTerreno));
 
 
 
