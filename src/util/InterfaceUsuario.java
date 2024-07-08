@@ -3,7 +3,7 @@ import java.util.Scanner;
 import modelo.Financiamento;
 import modelo.Apartamento;
 
-public class InterfaceUsuario {
+public class InterfaceUsuario  {
     Scanner scanner = new Scanner(System.in);
 
     // Esse método vai solicitar para o usuário digitar o valor do imóvel
@@ -41,6 +41,24 @@ public class InterfaceUsuario {
             }
         }
         return prazoFinanciamento;
+    }
+
+
+    // Esse método pede ao usuário o valor do financiamento
+    public double pedirValorFinaciamento() {
+        double valorFinanciamento = -1;
+        while(valorFinanciamento <= 0 || valorFinanciamento > 1000000 ){
+            System.out.println("Qual será o valor do financiamento?");
+            try{
+                valorFinanciamento = scanner.nextDouble();
+                if(valorFinanciamento <= 0 || valorFinanciamento > 1000000){
+                    System.out.println("Valor de imóvel inválido, tente novamente");
+                }
+            } catch (Exception e){
+                System.out.println(e.getMessage());
+            }
+        }
+        return valorFinanciamento;
     }
 
 

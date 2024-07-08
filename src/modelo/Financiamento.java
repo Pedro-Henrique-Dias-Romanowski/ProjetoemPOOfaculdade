@@ -4,9 +4,10 @@ package modelo;
 public  abstract class Financiamento {
 
     // Essa clase contém três atributos
-    protected   double valorImovel;
-    protected   int prazoFinanciamento;
+    protected double valorImovel;
+    protected    int prazoFinanciamento;
     protected   double taxaJurosAnual;
+    protected double valorFinanciamento;
 
 
     // Aqui estão os métodos getters
@@ -22,7 +23,9 @@ public  abstract class Financiamento {
         return taxaJurosAnual;
     }
 
-
+    public double getValorFinanciamento() {
+        return valorFinanciamento;
+    }
 
     // Métodos
     // Esse método irá calcular o pagamento mensal

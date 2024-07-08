@@ -1,135 +1,88 @@
 package main;
 import modelo.*;
 import util.InterfaceUsuario;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Main  {
+public class Main {
 
     public static void main(String[] args) {
 
 
         InterfaceUsuario interfaceusuario = new InterfaceUsuario();
         List<Financiamento> financiamentos = new ArrayList<Financiamento>();
-        /*double valorImovel = interfaceusuario.pedirValorImovel();
-        int prazofinanciamento = interfaceusuario.pedirPrazoFinanciamento();
-        double taxaJuros = interfaceusuario.pedirTaxadejuros();
-        double tamanhoArea = interfaceusuario.pedirTamanhoArea();
-        double tamanhoTerreno = interfaceusuario.pedirTamanhoTerreno();
-        financiamentos.add(new Casa(valorImovel, prazofinanciamento, taxaJuros, tamanhoArea, tamanhoTerreno));
 
-         */
-        /*double valorImovel = interfaceusuario.pedirValorImovel();
-        int prazofinanciamento = interfaceusuario.pedirPrazoFinanciamento();
-        double taxaJuros = interfaceusuario.pedirTaxadejuros();
-        int numeroVagas = interfaceusuario.pedirNumeroDeVagasGaragem();
-        int andar = interfaceusuario.pedirAndar();
-        financiamentos.add(new Apartamento(valorImovel, prazofinanciamento, taxaJuros, numeroVagas, andar));
-
-         */
         double valorImovel = interfaceusuario.pedirValorImovel();
         int prazofinanciamento = interfaceusuario.pedirPrazoFinanciamento();
+        double valorFinanciamento = interfaceusuario.pedirValorFinaciamento();
         double taxaJuros = interfaceusuario.pedirTaxadejuros();
-        double tamanhoArea = interfaceusuario.pedirTamanhoArea();
-        double tamanhoTerreno = interfaceusuario.pedirTamanhoTerreno();
-        financiamentos.add(new Casa(valorImovel, prazofinanciamento, taxaJuros, tamanhoArea, tamanhoTerreno));
+        int andar = interfaceusuario.pedirAndar();
+        int numeroVagasGaragem = interfaceusuario.pedirNumeroDeVagasGaragem();
+
+        Financiamento apartamento = new Apartamento(valorImovel, prazofinanciamento, valorFinanciamento,taxaJuros, numeroVagasGaragem, andar);
+        financiamentos.add(apartamento);
+
+        InterfaceUsuario interfaceusuario1 = new InterfaceUsuario();
+        Financiamento casa = new Casa(250000, 10, 1500, 20, 50000, 35000);
+        financiamentos.add(casa);
 
 
+        /* InterfaceUsuario interfaceusuario2 = new InterfaceUsuario();
+         double valorImovel1 = interfaceusuario2.pedirValorImovel();
+         int prazoFinanciamento1 = interfaceusuario2.pedirPrazoFinanciamento();
+         double taxaJuros1 = interfaceusuario2.pedirTaxadejuros();
+         int tipoZona = interfaceusuario2.pedirTipoDeZona();
 
-        double totalImoveis = 0;
-        double totalFinanciamentos = 0;
+         */
 
-        for(Financiamento financiamento: financiamentos){
-            financiamento.mostrarDadosFinanciamento();
-            totalImoveis += financiamento.getValorImovel();
-            totalFinanciamentos += financiamento.calcular_total_pagamento();
+        Financiamento terreno = new Terreno(500000, 15, 11,10, 2);
+        financiamentos.add(terreno);
+
+
+        FileWriter escritor = null;
+        try {
+            escritor = new FileWriter("arquivofinanciamentos.txt");
+            escritor.write(apartamento.toString());
+            escritor.write(casa.toString());
+            escritor.write(terreno.toString());
+
+            escritor.flush();
+            escritor.close();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+
+        BufferedReader br = null;
+        FileReader leitor = null;
+
+        String linha;
+
+        try{
+            leitor = new FileReader("arquivofinanciamentos.txt");
+            br = new BufferedReader(leitor);
+
+            while((linha = br.readLine()) != null){
+                System.out.println(linha);
+            }
+            leitor.close();
+            br.close();
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+
     }
 }
 
-        /* double valorImovel = interfaceusuario.pedirValorImovel();
-        int prazoFinanciamento = interfaceusuario.pedirPrazoFinanciamento();
-        double TaxaJuros = interfaceusuario.pedirTaxadejuros();
-
-        Financiamento financiamentoUsuario = new Financiamento(valorImovel, prazoFinanciamento, TaxaJuros);
-        List<Financiamento> financiamentos = new ArrayList<>();
-         financiamentos.add(financiamentoUsuario);
-         financiamentos.add(new Casa(200000, 20, 8));
-         financiamentos.add(new Casa(300000,20, 7));
-         financiamentos.add(new Apartamento(1500000, 5, 10));
-         financiamentos.add(new Apartamento(250000, 15, 20));
-         financiamentos.add(new Terreno(700000, 20, 20));
-
-         double totalImoveis = 0;
-         double totalFinanciamentos = 0;
-         double pagamentoMensal = 0;
-
-        for(Financiamento financiamento: financiamentos){
-            financiamento.mostrarDadosFinanciamento();
-            System.out.println("============");
-            totalImoveis += financiamento.getValorImovel();
-            totalFinanciamentos += financiamento.calcular_total_pagamento();
-        }
-
-        System.out.println("Total de todos os imóveis: R$" + totalImoveis);
-        System.out.println();
-        System.out.println("Total de todos os financiamentos: R$" + totalFinanciamentos);
-        System.out.println();
-        System.out.println("Cada parcela ficará: R$" + pagamentoMensal);
-        System.out.println();
-    }
-}
-
-       InterfaceUsuario interfaceUsuario = new InterfaceUsuario();
-        double  taxaJuros = interfaceUsuario.pedirTaxadejuros();
-        int prazoFinanciamentoanual = interfaceUsuario.pedirPrazoFinanciamento();
-        double valorImovel = interfaceUsuario.pedirValorImovel();
-
-        Financiamento financiamento = new Financiamento(valorImovel, prazoFinanciamentoanual, taxaJuros);
-        financiamentos.add(financiamento);
 
 
-        InterfaceUsuario interfaceUsuario1 = new InterfaceUsuario();
-        double taxaJuros1 = interfaceUsuario1.pedirTaxadejuros();
-        int prazoFinanciamentoanual1 = interfaceUsuario1.pedirPrazoFinanciamento();
-        double valorImovel1 = interfaceUsuario1.pedirValorImovel();
-
-        Financiamento financiamento1 = new Financiamento(valorImovel1, prazoFinanciamentoanual1, taxaJuros1);
-        financiamentos.add(financiamento1);
 
 
-        InterfaceUsuario interfaceUsuario2 = new InterfaceUsuario();
-        double taxaJuros2 = interfaceUsuario2.pedirTaxadejuros();
-        int prazoFinanciamentoanual2 = interfaceUsuario2.pedirPrazoFinanciamento();
-        double valorImovel2 = interfaceUsuario2.pedirValorImovel();
-
-        Financiamento financiamento2 = new Financiamento(valorImovel2, prazoFinanciamentoanual2, taxaJuros2);
-        financiamentos.add(financiamento2);
 
 
-        InterfaceUsuario interfaceUsuario3 = new InterfaceUsuario();
-        double taxaJuros3 = interfaceUsuario3.pedirTaxadejuros();
-        int prazoFinanciamentoanual3 = interfaceUsuario3.pedirPrazoFinanciamento();
-        double valorImovel3 = interfaceUsuario3.pedirValorImovel();
-
-        Financiamento financiamento3 = new Financiamento(valorImovel3, prazoFinanciamentoanual3, taxaJuros3);
-        financiamentos.add(financiamento3);
-
-        for(Financiamento f : financiamentos){
-            System.out.println("----------------------");
-            System.out.println("Valor do imóvel: R$" + f.getValorImovel());
-            System.out.println("Prazo do financiamento (anos): " + f.getPrazoFinanciamento());
-            System.out.println("Taxa de juros: " + f.getTaxaJurosAnual());
-            System.out.println("Valor das parcelas: R$" + f.calular_pagamento_mensal());
-            System.out.println("Valor total pago: R$" + f.calcular_total_pagamento());
-            System.out.println("-----------------------------------------");
-        }
-
-        System.out.println("Valor total de todos os imóveis: " + (valorImovel + valorImovel1 + valorImovel2 + valorImovel3));
-        System.out.println("O valor total de todos os financiamentos vai ser de: " + (financiamento.calcular_total_pagamento() + financiamento1.calcular_total_pagamento()+
-                financiamento2.calcular_total_pagamento()+ financiamento3.calcular_total_pagamento()));
-
-        */
 
 
 
