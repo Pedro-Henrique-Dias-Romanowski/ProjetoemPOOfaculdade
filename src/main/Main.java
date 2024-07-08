@@ -80,24 +80,30 @@ public class Main {
 
         ObjectOutputStream obj = null;
         try {
-            obj = new ObjectOutputStream(new FileOutputStream("arquivolistaFinanciamentos.ser"));
+            obj = new ObjectOutputStream(new FileOutputStream("arquivolistafinanciamentos.ser"));
             obj.writeObject(financiamentos);
+            System.out.println("Os financiamentos foram salvos");
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        List<Financiamento> financiamentosSerializados = new ArrayList<>();
+        List<Financiamento> financiamentosSerializados = null;
         ObjectInputStream in = null;
         try {
-            in = new ObjectInputStream(new FileInputStream("arquivolistaFinanciamentos.ser"));
+            in = new ObjectInputStream(new FileInputStream("arquivolistafinanciamentos.ser"));
             financiamentosSerializados = (List<Financiamento>) in.readObject();
+            System.out.println("Os financiamentos foram lidos");
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        for (Financiamento financiamento : financiamentosSerializados) {
-            System.out.println(financiamento);
+       /* if(financiamentosSerializados != null){
+            for (Financiamento financiamento : financiamentosSerializados) {
+                System.out.println(financiamento);
+            }
         }
+
+        */
     }
 }
 
