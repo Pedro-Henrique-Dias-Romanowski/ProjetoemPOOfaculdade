@@ -29,7 +29,6 @@ public class Main {
         financiamentos.add(casa);
 
 
-
         Financiamento terreno = new Terreno(500000, 15, 10000, 10, 2);
         financiamentos.add(terreno);
 
@@ -80,28 +79,29 @@ public class Main {
         }
 
         ObjectOutputStream obj = null;
-        try{
+        try {
             obj = new ObjectOutputStream(new FileOutputStream("arquivolistaFinanciamentos.ser"));
             obj.writeObject(financiamentos);
-        } catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
         List<Financiamento> financiamentosSerializados = new ArrayList<>();
         ObjectInputStream in = null;
-        try{
+        try {
             in = new ObjectInputStream(new FileInputStream("arquivolistaFinanciamentos.ser"));
             financiamentosSerializados = (List<Financiamento>) in.readObject();
-        } catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
-        for(Financiamento financiamento : financiamentos){
+        for (Financiamento financiamento : financiamentosSerializados) {
             System.out.println(financiamento);
         }
-
-        }
     }
+}
+
+
 
 
 
