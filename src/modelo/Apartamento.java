@@ -2,7 +2,8 @@ package modelo;
 
 import java.io.Serializable;
 
-public class Apartamento extends Financiamento implements Serializable {
+public class Apartamento extends Financiamento {
+    private static final long serialVersionUID = 1L;
     private int numeroDeVagas;
     private int andar;
 

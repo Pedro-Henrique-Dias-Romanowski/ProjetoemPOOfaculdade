@@ -2,7 +2,8 @@ package modelo;
 
 import java.io.Serializable;
 
-public class Terreno extends Financiamento implements Serializable {
+public class Terreno extends Financiamento {
+    private static final long serialVersionUID = 1L;
     private int  tipodeZona;
     public Terreno(double valorestimadoImovel, int prazoFinanciamentoanual,  double valorFinanciamento , double taxadeJurosAnual, int tipodeZona){
         this.valorImovel = valorestimadoImovel;

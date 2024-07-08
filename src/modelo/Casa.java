@@ -3,7 +3,8 @@ package modelo;
 import java.io.Serializable;
 import java.util.Scanner;
 
-public class Casa extends Financiamento implements Serializable {
+public class Casa extends Financiamento {
+    private static final long serialVersionUID = 1L;
     public  double tamanhoArea;
     private double tamanhoTerreno;
     private double acrescimo;
@@ -61,6 +62,8 @@ public class Casa extends Financiamento implements Serializable {
     }
 
 
+
+
     public String toString(){
         StringBuilder sb = new StringBuilder();
 
@@ -70,7 +73,7 @@ public class Casa extends Financiamento implements Serializable {
         sb.append("Prazo finaciamento: " + this.getPrazoFinanciamento()).append("\n");
         sb.append("Taxa de juros: " + this.getTaxaJurosAnual()  + "%").append("\n");
         sb.append("Tamanho da área: " + this.getTamanhoArea() + " metros quadrados").append("\n");
-        sb.append("Tamanho do terreno: " + this.getTamanhoTerreno() + " metros quadrados").append("\n");
+        sb.append("Tamanho do terreno: ").append(this.getTamanhoTerreno()).append(" metros quadrados").append("\n");
         sb.append("\n");
         sb.append(String.format("O valor total vai ser de: R$%.2f", this.calcular_total_pagamento(), ",")).append("\n");
         sb.append(String.format("O pagamento mensal vai ser de: R$%.2f", this.calular_pagamento_mensal())).append("\n");
